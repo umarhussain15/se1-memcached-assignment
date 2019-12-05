@@ -5,6 +5,8 @@ def prepare_exp(SSHHost, SSHPort, REMOTEROOT, optpt):
     f = open("config", 'w')
     f.write("Host benchmark\n")
     f.write("   Hostname %s\n" % SSHHost)
+    f.write("   IdentityFile /home/ubuntu/custom_ssh/ssh_host_rsa_key\n")
+    f.write("   StrictHostKeyChecking no\n")
     f.write("   Port %d\n" % SSHPort)
     f.close()
     
