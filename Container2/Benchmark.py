@@ -14,10 +14,11 @@ def prepare_exp(SSHHost, SSHPort, REMOTEROOT, optpt):
     f = open("run-experiment.sh", 'w')
     f.write("#!/bin/bash\n")
     f.write("set -x\n\n")
+
+    # adjust this line to properly start memcached
+    f.write("ssh -F config benchmark \"nohup memcached -u ubuntu -p 11211 -P memcached.pid > memcached.out 2> memcached.err &\"\n")
     
-    f.write("ssh -F config benchmark \"nohup ls dummy -p 11222 -P memcached.pid > memcached.out 2> memcached.err &\"\n") # adjust this line to properly start memcached
-    
-    f.write("RESULT=`ssh -F config benchmark \"pidof memcachd\"`\n")
+    f.write("RESULT=`ssh -F config benchmark \"pidof memcached\"`\n")
 
     f.write("sleep 5\n")
 
