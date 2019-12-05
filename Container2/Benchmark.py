@@ -28,7 +28,7 @@ def prepare_exp(SSHHost, SSHPort, REMOTEROOT, optpt):
     
     # add a few lines to extract the "Response rate" and "Response time \[ms\]: av and store them in $REQPERSEC and $LATENCY"
     
-    f.write("ssh -F config benchmark \"sudo kill -9 $(cat memcached.pid)\"\n")
+    f.write("ssh -F config benchmark \"xargs kill -9 < memcached.pid\"\n")
 
     f.write("echo \"requests latency\" > stats.csv\n")
     f.write("echo \"$REQPERSEC $LATENCY\" >> stats.csv\n")
