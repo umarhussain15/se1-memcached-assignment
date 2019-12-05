@@ -2,7 +2,17 @@ version: '3'
 services:
   server:
     build:
-YOUR CODE GOES HERE
-	client:
+      context: Container1
+    ports:
+      - "11211:11211"
+    volumes:
+      - key-share-volume:/home/ubuntu/.ssh/
+  client:
     build:
-YOUR CODE GOES HERE
+      context: Container2
+    ports:
+      - "10022:2022"
+    volumes:
+      - key-share-volume:/home/ubuntu/share_pkey
+volumes:
+  key-share-volume:
