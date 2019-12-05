@@ -23,9 +23,10 @@ def prepare_exp(SSHHost, SSHPort, REMOTEROOT, optpt):
     f.write("sleep 5\n")
 
     f.write("if [[ -z \"${RESULT// }\" ]]; then echo \"memcached process not running\"; CODE=1; else CODE=0; fi\n")
-        
-    f.write("%s/dummy --execute-number=%d --concurrency=%d -s %s > stats.log\n\n" % (REMOTEROOT, optpt["noRequests"], optpt["concurrency"], SSHHost)) #adjust this line to properly start the client
-    
+
+    # start mcperf with given arguments
+    f.write("mcperf --num-calls=%d --conn-rate=%d -s %s &> stats.log\n\n" % (optpt["noRequests"], optpt["concurrency"], SSHHost))
+
     # add a few lines to extract the "Response rate" and "Response time \[ms\]: av and store them in $REQPERSEC and $LATENCY"
     
     f.write("ssh -F config benchmark \"xargs kill -9 < memcached.pid\"\n")
