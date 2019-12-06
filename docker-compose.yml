@@ -14,5 +14,7 @@ services:
       - "10022:2022"
     volumes:
       - key-share-volume:/home/ubuntu/share_pkey
+    depends_on:
+      - server
 volumes:
   key-share-volume:
