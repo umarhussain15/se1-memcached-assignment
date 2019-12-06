@@ -35,5 +35,5 @@ RUN mkdir /home/ubuntu/.ssh && \
     echo "$SSH_KEY" > /home/ubuntu/.ssh/authorized_keys && \
     chmod 0600 /home/ubuntu/.ssh/authorized_keys && echo $SSH_KEY
 ENV PORT 2203
-EXPOSE 11211 2203
+EXPOSE 11211 $PORT
 CMD "/entrypoint.sh"
