@@ -28,7 +28,7 @@ def prepare_exp(SSHHost, SSHPort, REMOTEROOT, optpt):
     # concurrency = 100
     concurrency = optpt["concurrency"]
     # start mcperf with given arguments
-    f.write("mcperf --conn-rate=%d --num-calls=%d --num-conns=%d --call-rate=%d  -s %s &> stats.log\n\n" % (150, rate*20, concurrency, rate, SSHHost))
+    f.write("mcperf --conn-rate=%d --num-calls=%d --num-conns=%d --call-rate=%d  -s %s &> stats.log\n\n" % (150, rate*9, concurrency, rate, SSHHost))
 
     # add a few lines to extract the "Response rate" and "Response time \[ms\]: av and store them in $REQPERSEC and $LATENCY"
     f.write("REQPERSEC=`cat stats.log | grep \"Response rate\" | cut -f 2 -d \":\" | cut -f 2 -d \" \"`\n")
