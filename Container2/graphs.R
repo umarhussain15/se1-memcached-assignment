@@ -6,7 +6,7 @@ ts <- (as.numeric(Sys.time())*1000)
 trellis.device("pdf", file=paste("graph1_",ts,".pdf", sep =""), color=T, width=6.5, height=5.0)
 
 xyplot(requests ~ rate/1000, data = csvDataFrame[,c("rate","requests")],
-        xlab="Rate (k calls/sec)",
+        xlab="Rate (k.calls/sec)",
         ylab="Througput (req/sec)",
         main="Graph 1",
         type=c("p","l"))
